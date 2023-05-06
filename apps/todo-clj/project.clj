@@ -6,6 +6,7 @@
   :dependencies [[org.clojure/clojure "1.10.0"]
                  [ring "1.10.0"]
                  [compojure "1.7.0"]
+                 [hiccup "1.0.5"]
                  [environ "1.0.1"]]
   :plugins [[lein-environ "1.0.1"]]
   :repl-options {:init-ns todo-clj.core}
