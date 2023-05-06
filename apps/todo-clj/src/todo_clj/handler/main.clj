@@ -9,8 +9,8 @@
 
 (defn home [req]
   (-> (home-view req)
-      res/response
-      res/html))
+        res/response
+        res/html))
 
 (defroutes main-routes
   (GET "/" _ home)
