@@ -7,7 +7,9 @@
                  [ring "1.10.0"]
                  [compojure "1.7.0"]
                  [hiccup "1.0.5"]
-                 [environ "1.0.1"]]
+                 [environ "1.0.1"]
+                 [org.clojure/java.jdbc "0.4.2"]
+                 [org.postgresql/postgresql "9.4-1205-jdbc42"]]
   :plugins [[lein-environ "1.0.1"]]
   :repl-options {:init-ns todo-clj.core}
   :profiles 
