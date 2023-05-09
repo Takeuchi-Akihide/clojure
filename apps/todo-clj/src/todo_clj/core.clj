@@ -34,9 +34,11 @@
       (wrap flash/wrap-flash true)
       (wrap session/wrap-session true)))
 
-(defn start-server []
-  (when-not @server
-    (reset! server (server/run-jetty #'app {:port 3000 :join? false}))))
+(defn start-server [& {:keys [host port join?]
+                       :or {host "localhost" port 3000 join? false}}]
+  (let [port (if (string? port) (Integer/parseInt port) port)]
+    (when-not @server
+      (reset! server (server/run-jetty #'app {:host host :port port :join? join?})))))
 
 (defn stop-server []
   (when @server

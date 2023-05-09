@@ -12,7 +12,10 @@
                  [org.postgresql/postgresql "9.4-1205-jdbc42"]]
   :plugins [[lein-environ "1.0.1"]]
   :repl-options {:init-ns todo-clj.core}
+  :uberjar-name "todo-clj.jar"
   :profiles 
   {:dev {:dependencies [[prone "0.8.2"]]
          :env {:dev true
-               :db {:dbtype "postgresql" :dbname "todo_clj_dev" :host "localhost" :port 5432 :user "username" :password "password"}}}})
+               :db {:dbtype "postgresql" :dbname "todo_clj_dev" :host "localhost" :port 5432 :user "username" :password "password"}}}
+   :uberjar {:aot :all
+             :main todo-clj.main}})
