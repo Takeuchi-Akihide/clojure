@@ -23,10 +23,24 @@
       res/response
       res/html))
 
-(defn todo-new [req] "TODO new")
-(defn todo-new-post [req] "TODO new post")
+(defn todo-new [req]
+  (-> (view/todo-new-view req)
+      res/response
+      res/html))
+
+(defn todo-new-post [{:as req :keys [params]}]
+  (if-let [todo (first (todo/save-todo (:title params)))]
+    (-> (res/redirect (str "/todo/" (:id todo)))
+        (assoc :flash {:msg "TODOを正常に追加しました。"})
+        res/html)))
+
 (defn todo-search [req] "TODO search")
-(defn todo-show [req] "TODO show")
+(defn todo-show [{:as req :keys [params]}]
+  (if-let [todo (todo/find-first-todo (Long/parseLong (:todo-id params)))]  ;; paramsからidを取得→数値に変換→queryを取得してtodoとする
+    (-> (view/todo-show-view req todo)
+        res/response
+        res/html)))
+
 (defn todo-edit [req] "TODO edit")
 (defn todo-edit-post [req] "TODO edit post")
 (defn todo-delete [req] "TODO delete")
